@@ -4,6 +4,7 @@ import java.awt.event.*;
 import java.util.*;
 
 
+@SuppressWarnings({ "serial", "unused" })
 public class TextAnalysis extends Applet implements ActionListener {
 	
 	Button a,b;
@@ -11,7 +12,7 @@ public class TextAnalysis extends Applet implements ActionListener {
 	String input;
 	int [] len;
 	
-	
+	//line 65
 	public void init (){
 		
 		setSize(500, 500);
@@ -45,7 +46,7 @@ public class TextAnalysis extends Applet implements ActionListener {
 	public void actionPerformed (ActionEvent e){
 		
 		if (e.getSource()==a){
-			//parting();
+			Parting(null);
 		}
 		if (e.getSource()==b){
 			start();
@@ -53,11 +54,23 @@ public class TextAnalysis extends Applet implements ActionListener {
 		
 	}
 	
-	public void Parting (){
+	public void Parting (Graphics g){
 		input = tf.getText();
 		String [] parts = input.split(" ");
 			
-		for (int i1 = 1; i1 != parts.length;i1++){
+		for (int i1 = 0; i1 != parts.length;i1++){
+			
+			int templen;
+			templen = parts[i1].length();
+			len[templen] +=1;
+			
+		}
+		
+		for (int i2 = 0; i2 != len.length;i2++){
+			
+			if (len[i2] != 0){
+				g.drawString("There are " + len[i2] + " words that are " + i2 + " long", 100,100 );
+			}
 			
 		}
 		
