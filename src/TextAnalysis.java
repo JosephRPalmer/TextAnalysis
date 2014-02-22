@@ -42,6 +42,7 @@ public class TextAnalysis extends Applet implements ActionListener {
 			
 			
 			input = tf.getText();
+			input = input.replace(".", " ").replace("?", " ").replace("!", " ").replace("," , " ");
 			String [] parts = input.split(" ");
 			int templen = 0;
 			
@@ -54,7 +55,7 @@ public class TextAnalysis extends Applet implements ActionListener {
 				
 			}
 			
-			System.out.println(templen);
+			//System.out.println(templen);
 			
 			int len[] = new int[templen+1];
 				
@@ -79,7 +80,6 @@ public class TextAnalysis extends Applet implements ActionListener {
 	}
 	
 	
-	
 	public void actionPerformed (ActionEvent e){
 		
 		if (e.getSource()==a){
@@ -91,9 +91,6 @@ public class TextAnalysis extends Applet implements ActionListener {
 		}
 		
 	}
-	
-	
-
-	
+		
 
 }
