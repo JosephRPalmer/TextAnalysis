@@ -3,7 +3,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-
 @SuppressWarnings({ "serial", "unused" })
 public class TextAnalysis extends Applet implements ActionListener {
 	boolean thereistext;
@@ -12,7 +11,6 @@ public class TextAnalysis extends Applet implements ActionListener {
 	String input;
 	
 	
-	//line 65
 	public void init (){
 		
 		setSize(500, 500);
@@ -58,7 +56,9 @@ public class TextAnalysis extends Applet implements ActionListener {
 			//System.out.println(templen);
 			
 			int len[] = new int[templen+1];
-				
+			int mean =0;
+			int actual;
+			int sumformean =0;
 			for (int i1 = 0; i1 <= parts.length-1;i1++){
 				
 				
@@ -67,10 +67,18 @@ public class TextAnalysis extends Applet implements ActionListener {
 				
 			}
 			int printblank = 100;
+			for (int i3 =0; i3 <= len.length-1; i3++){
+				if (len[i3] > 0){
+					sumformean = sumformean + (len[i3] * i3);
+					mean = mean + i3;
+				}
+			}
+			actual = sumformean / mean;
+			g.drawString("The mean word length is " + actual,100, 50);
 			for (int i2 = 0; i2 != len.length;i2++){
 				
 				if (len[i2] != 0){
-					g.drawString("There are " + len[i2] + " words that are " + i2 + " long", 100,printblank );
+					g.drawString(len[i2] + " words of length " + i2 , 100,printblank );
 					printblank +=20;
 				}
 				
@@ -78,8 +86,7 @@ public class TextAnalysis extends Applet implements ActionListener {
 			
 			}
 	}
-	
-	
+		
 	public void actionPerformed (ActionEvent e){
 		
 		if (e.getSource()==a){
