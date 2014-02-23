@@ -27,18 +27,13 @@ public class TextAnalysis extends Applet implements ActionListener {
 		add(b);
 		b.addActionListener(this);
 		
-		
 	}
-	
 	public void start() {
 		tf.setText("Enter Text Here...");
 		thereistext = false;
 	}
-	
 	public void paint (Graphics g){
 		if (thereistext){
-			
-			
 			input = tf.getText();
 			input = input.replace(".", " ").replace("?", " ").replace("!", " ").replace("," , " ");
 			String [] parts = input.split(" ");
@@ -60,20 +55,19 @@ public class TextAnalysis extends Applet implements ActionListener {
 			int actual;
 			int sumformean =0;
 			for (int i1 = 0; i1 <= parts.length-1;i1++){
-				
-				
-				
-				len[parts[i1].length()]++;
-				
+					len[parts[i1].length()]++;
 			}
 			int printblank = 100;
 			for (int i3 =0; i3 <= len.length-1; i3++){
 				if (len[i3] > 0){
 					sumformean = sumformean + (len[i3] * i3);
-					mean = mean + i3;
+					mean = mean + len[i3];
 				}
 			}
+			System.out.println("Sum for Mean- " + sumformean  );
+			System.out.println("Mean- " + mean);
 			actual = sumformean / mean;
+			
 			g.drawString("The mean word length is " + actual,100, 50);
 			for (int i2 = 0; i2 != len.length;i2++){
 				
@@ -95,6 +89,7 @@ public class TextAnalysis extends Applet implements ActionListener {
 		}
 		if (e.getSource()==b){
 			start();
+			repaint();
 		}
 		
 	}
