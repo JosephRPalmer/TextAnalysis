@@ -13,7 +13,7 @@ public class TextAnalysis extends Applet implements ActionListener {
 	
 	public void init (){
 		
-		setSize(500, 500);
+		setSize(1500, 800);
 		
 		tf = new TextField(35);
 		add(tf);
@@ -33,6 +33,15 @@ public class TextAnalysis extends Applet implements ActionListener {
 		thereistext = false;
 	}
 	public void paint (Graphics g){
+		int jx[] = {1350,1400,1400,1385,1385,1350,1350,1370,1370,1350};
+		int jp[] = {710,710,720,720,770,770,760,760,720,720};
+		g.fillPolygon(jx, jp, jx.length);
+		int rx[] = {730,730,740,740,770,770};
+		int ry[] = {1405,1435,1435,1415,1415,1405};
+		g.fillPolygon(ry, rx, ry.length);
+		int px[] = {1445,1440,1440,1470,1470,1445,1445,1447,1447,1455,1455,1445};
+		int py[] = {770,770,710,710,740,740,720,720,735,735,720,720};
+		g.fillPolygon(px, py, px.length);
 		if (thereistext){
 			input = tf.getText();
 			input = input.replace(".", " ").replace("?", " ").replace("!", " ").replace("," , " ");
@@ -64,8 +73,6 @@ public class TextAnalysis extends Applet implements ActionListener {
 					mean = mean + len[i3];
 				}
 			}
-			System.out.println("Sum for Mean- " + sumformean  );
-			System.out.println("Mean- " + mean);
 			actual = sumformean / mean;
 			
 			g.drawString("The mean word length is " + actual,100, 50);
