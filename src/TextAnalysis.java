@@ -57,8 +57,7 @@ public class TextAnalysis extends Applet implements ActionListener {
 				
 			}
 			
-			//System.out.println(templen);
-			
+						
 			int len[] = new int[templen+1];
 			int mean =0;
 			int actual;
@@ -85,7 +84,108 @@ public class TextAnalysis extends Applet implements ActionListener {
 				
 			}
 			
+			//GRAPH
+			
+			g.drawLine(100, printblank, 100, printblank + 200); //y
+			g.drawLine(100, printblank + 200, 600, printblank + 200); //x
+			//gets interval between things on x axis
+			int basex = dynamicx(len.length );
+			int incrementx = 100;
+			for (int i3 =0 ; i3 <= len.length -1; i3++){
+				if ( i3 != 0 && i3 <= 9){
+				g.drawString(Integer.toString(i3), ((incrementx) - (basex /2)), printblank + 225);	
+				}
+				else if (i3 !=0 && i3 > 9){
+					int i3temp = i3;
+					String temp = Integer.toString(i3temp);
+					int counter = temp.length();
+					int[] list = new int[counter];
+					
+					while ( i3temp > 0 )
+					{
+						list[counter-1] = i3temp % 10;
+						i3temp = i3temp / 10;
+						counter--;
+					}
+					for (int i5 = 0; i5 <= list.length-1 ; i5 ++)
+					{
+						if (i5 !=0){
+							g.drawString(Integer.toString(list[i5]), ((incrementx) - (basex /2)), printblank + 225 + (i5 * 14));
+						}
+						else if (i5 == 0){
+					g.drawString(Integer.toString(list[i5]), ((incrementx) - (basex /2)), printblank + 225);
+						}
+					}
+				}
+				incrementx = incrementx + basex;
+				
 			}
+			
+			int axisysize = 0;
+			
+			for (int getmax = 1; getmax <= len.length -1; getmax++){
+				
+				if (axisysize < len[getmax]){
+					
+					axisysize = len[getmax];
+					
+				}
+				
+			}
+			int basey = dynamicy(axisysize);
+			System.out.println(basey);
+			int incrementy = printblank + 210;
+			
+			for (int i3 = 0; i3 <= axisysize; i3++){
+				
+				g.drawString(Integer.toString(i3), 75, incrementy);	
+				incrementy = incrementy - basey;
+			
+			}
+			incrementx = basex;
+			basex = 100;
+			
+			for (int i4 = 1; i4 <= len.length -1; i4++){
+				int temp1, temp2;
+				//if (i4 != 1 ){
+				
+				temp1 = (basex  + (incrementx*(i4-1)));
+				//}
+				//else{
+					//
+				//temp1 = 100;
+				System.out.println(temp1);
+					//}
+				temp2 = (basex  + (incrementx*(i4-1)));
+				int xcords[] = {temp1, temp1, temp2+incrementx,temp2 + incrementx };
+				int ycords[] = {printblank+200, (printblank+200) - (basey*len[i4]),(printblank+200) - (basey*len[i4]),printblank+200 };
+				g.drawPolygon(xcords, ycords, ycords.length);
+				
+			}
+		
+			System.out.println(axisysize);
+			
+			
+			}
+	}
+	
+	public int dynamicx (int maxword){
+		
+		int temp;
+		temp = 580 / maxword; 
+		maxword = temp;
+		
+		return maxword;
+		
+	}
+	public int dynamicy (int maxword){
+		
+		int temp;
+		temp = 200/ maxword;
+		maxword = temp;
+		
+		return maxword;
+		
 	}
 		
 	public void actionPerformed (ActionEvent e){
