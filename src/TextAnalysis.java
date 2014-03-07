@@ -46,6 +46,21 @@ public class TextAnalysis extends Applet implements ActionListener {
 		if (thereistext){
 			input = tf.getText();
 			input = input.replace(".", " ").replace("?", " ").replace("!", " ").replace("," , " ");
+			String [] checkext = input.split(" ");
+			
+			if (checkext[checkext.length -1] == "txt"){
+				
+				
+			}
+			else{
+				
+				
+				
+			}
+			
+			
+			
+			
 			String [] parts = input.split(" ");
 			int templen = 0;
 			
