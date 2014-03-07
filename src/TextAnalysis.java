@@ -175,7 +175,7 @@ public class TextAnalysis extends Applet implements ActionListener {
 				g.drawPolygon(xcords, ycords, ycords.length);
 				
 			}
-			
+			//Letter Frequency
 			int asciirep;
 			int alphabetdistribution[] = new int [27];
 			int i6;
@@ -204,7 +204,7 @@ public class TextAnalysis extends Applet implements ActionListener {
 			}
 		
 					
-			//Letter Frequency
+			
 			g.drawLine(100, printblank+300, 100, printblank + 500); //y
 			g.drawLine(100, printblank + 500, 670, printblank + 500); //x
 			
@@ -212,9 +212,7 @@ public class TextAnalysis extends Applet implements ActionListener {
 			System.out.println(baseyalpha);
 			int incrementyalpha = printblank + 510;
 			
-			System.out.println(sizeofalphaxis + "  " + baseyalpha + "  " + incrementyalpha);
-
-
+			
 			
 			for (int i3 = 0; i3 <= sizeofalphaxis; i3++){
 				
@@ -238,7 +236,7 @@ public class TextAnalysis extends Applet implements ActionListener {
 			for (int i4 = 1; i4 <= alphabetdistribution.length -1; i4++){
 				int temp1, temp2;
 			
-				
+				//draw graph
 				temp1 = (basex  + (incrementx*(i4-1)));
 				
 				System.out.println(temp1);
@@ -253,7 +251,7 @@ public class TextAnalysis extends Applet implements ActionListener {
 			}
 	}
 	
-	public int dynamicx (int maxword){
+	public int dynamicx (int maxword){ //Calculates data for dynamic x axis
 		
 		int temp;
 		temp = 580 / maxword; 
@@ -262,7 +260,7 @@ public class TextAnalysis extends Applet implements ActionListener {
 		return maxword;
 		
 	}
-	public int dynamicy (int maxword){
+	public int dynamicy (int maxword){ //Calculates data for dynamic y axis 
 		
 		int temp;
 		temp = 200/ maxword;
