@@ -9,6 +9,7 @@ public class TextAnalysis extends Applet implements ActionListener {
 	Button a,b;
 	TextField tf;
 	String input;
+	String alphabet[] = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
 	
 	
 	public void init (){
@@ -29,7 +30,7 @@ public class TextAnalysis extends Applet implements ActionListener {
 		
 	}
 	public void start() {
-		tf.setText("Enter Text Here...");
+		tf.setText("Enter Text or Text File Path Here...");
 		thereistext = false;
 	}
 	public void paint (Graphics g){
@@ -147,24 +148,92 @@ public class TextAnalysis extends Applet implements ActionListener {
 			
 			for (int i4 = 1; i4 <= len.length -1; i4++){
 				int temp1, temp2;
-				//if (i4 != 1 ){
+			
 				
 				temp1 = (basex  + (incrementx*(i4-1)));
-				//}
-				//else{
-					//
-				//temp1 = 100;
+				
 				System.out.println(temp1);
-					//}
+				
 				temp2 = (basex  + (incrementx*(i4-1)));
 				int xcords[] = {temp1, temp1, temp2+incrementx,temp2 + incrementx };
 				int ycords[] = {printblank+200, (printblank+200) - (basey*len[i4]),(printblank+200) - (basey*len[i4]),printblank+200 };
 				g.drawPolygon(xcords, ycords, ycords.length);
 				
 			}
-		
-			System.out.println(axisysize);
 			
+			int asciirep;
+			int alphabetdistribution[] = new int [27];
+			int i6;
+			for (int i7 = 0; i7 <= parts.length-1; i7++){
+				
+				
+				for ( i6 = 0; i6 < parts[i7].length(); i6++){
+					char temp;
+					parts[i7] = parts[i7].toLowerCase();
+					System.out.println(parts[i7]);
+					temp = parts[i7].charAt(i6);
+					asciirep = ((int) temp) -96;
+					alphabetdistribution[asciirep]++;
+					
+				}
+				
+						
+			}
+		
+			int sizeofalphaxis = 0;
+			for (int i9 =0; i9 <= 26; i9++ ){
+				if (alphabetdistribution[i9] > sizeofalphaxis){
+					sizeofalphaxis = alphabetdistribution[i9] ;
+				}
+				
+			}
+		
+					
+			//Letter Frequency
+			g.drawLine(100, printblank+300, 100, printblank + 500); //y
+			g.drawLine(100, printblank + 500, 670, printblank + 500); //x
+			
+			int baseyalpha = dynamicy(sizeofalphaxis);
+			System.out.println(baseyalpha);
+			int incrementyalpha = printblank + 510;
+			
+			System.out.println(sizeofalphaxis + "  " + baseyalpha + "  " + incrementyalpha);
+
+
+			
+			for (int i3 = 0; i3 <= sizeofalphaxis; i3++){
+				
+				g.drawString(Integer.toString(i3), 75, incrementyalpha);	
+				incrementyalpha = incrementyalpha - baseyalpha;
+			
+			}
+			basex = dynamicx(alphabet.length);
+			incrementx = 100;
+			for (int i3 = 0; i3 <= alphabet.length-1; i3++){
+				
+					
+				g.drawString(alphabet[i3], ((incrementx) - (basex /2))+20, printblank + 525);	
+				incrementx = incrementx + basex;
+			
+			}
+			basex = dynamicx(alphabet.length);
+			incrementx = basex;
+			basex = 100;
+			
+			for (int i4 = 1; i4 <= alphabetdistribution.length -1; i4++){
+				int temp1, temp2;
+			
+				
+				temp1 = (basex  + (incrementx*(i4-1)));
+				
+				System.out.println(temp1);
+				
+				temp2 = (basex  + (incrementx*(i4-1)));
+				int xcords[] = {temp1, temp1, temp2+incrementx,temp2 + incrementx };
+				int ycords[] = {printblank+500, (printblank+500) - (baseyalpha*alphabetdistribution[i4]),(printblank+500) - (baseyalpha*alphabetdistribution[i4]),printblank+500 };
+				g.drawPolygon(xcords, ycords, ycords.length);
+				
+			}
 			
 			}
 	}
@@ -201,5 +270,4 @@ public class TextAnalysis extends Applet implements ActionListener {
 		
 	}
 		
-
 }
